@@ -1,0 +1,168 @@
+[gd_scene load_steps=20 format=4 uid="uid://dyr1ccd4y2c6d"]
+
+[ext_resource type="Script" uid="uid://bhu6moc1u4svu" path="res://scripts/game_controller.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://jl2v5073ctw4" path="res://scripts/level_layer.gd" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://white_strip_16px_h.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://white_1x1.png" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://bnmo0jk43v0lg" path="res://scripts/player.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://d1cxm8y44f1w4" path="res://scripts/pickup.gd" id="6_5vw27"]
+[ext_resource type="Shader" uid="uid://bbdvhmewrso8m" path="res://shaders/rounded_corners.gdshader" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://csd032ve86us1" path="res://sfx/pickup.ogg" id="8_kek77"]
+[ext_resource type="Script" uid="uid://djp175nqcct2h" path="res://scripts/ui.gd" id="9_kek77"]
+[ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://scripts/door.gd" id="10_4c57u"]
+[ext_resource type="Script" uid="uid://bq1xq82psglp1" path="res://scripts/finish_zone.gd" id="11_efxa6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
+texture = ExtResource("2_h2yge")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/modulate = Color(0, 0, 0, 1)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lquwl"]
+physics_layer_0/collision_layer = 2
+sources/5 = SubResource("TileSetAtlasSource_1bvp3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(28, 28)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("6_7mycd")
+shader_parameter/corner_scale = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5vw27"]
+radius = 8.246211
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+size = Vector2(32, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
+size = Vector2(32, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_efxa6"]
+font_size = 32
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="LevelLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAWAAcABQABAAAAAAAVAAcABQABAAAAAAAUAAcABQABAAAAAAATAAcABQABAAAAAAASAAcABQABAAAAAAARAAcABQABAAAAAAAQAAcABQABAAAAAAAPAAcABQABAAAAAAAOAAcABQABAAAAAAAOAAgABQABAAAAAAAOAAkABQABAAAAAAAOAAoABQABAAAAAAAOAAsABQABAAAAAAAOAAwABQABAAAAAAAaAAcABQABAAAAAAAZAAcABQABAAAAAAAZAAgABQABAAAAAAAZAAkABQABAAAAAAAbAAcABQABAAAAAAAcAAcABQABAAAAAAAcAAoABQABAAAAAAAcAAsABQABAAAAAAAcAAwABQABAAAAAAAdAAcABQABAAAAAAAeAAcABQABAAAAAAAfAAcABQABAAAAAAAfAAgABQABAAAAAAAfAAkABQABAAAAAAAfAAoABQABAAAAAAAfAAsABQABAAAAAAAfAAwABQABAAAAAAAfAA0ABQABAAAAAAAcAA0ABQABAAAAAAAZAAwABQABAAAAAAAZAA0ABQABAAAAAAAZAA4ABQABAAAAAAAZAA8ABQABAAAAAAARAAoABQABAAAAAAASAAoABQABAAAAAAATAAoABQABAAAAAAAUAAoABQABAAAAAAAWAAoABQABAAAAAAAVAAoABQABAAAAAAAWAAsABQABAAAAAAAWAAwABQABAAAAAAAWAA0ABQABAAAAAAAWAA4ABQABAAAAAAAWAA8ABQABAAAAAAAZABAABQABAAAAAAAZABIABQABAAAAAAAYABIABQABAAAAAAAXABIABQABAAAAAAAWABIABQABAAAAAAAVABIABQABAAAAAAAUABIABQABAAAAAAAaABIABQABAAAAAAAbABIABQABAAAAAAAcABIABQABAAAAAAAZABEABQABAAAAAAAcAA8ABQABAAAAAAAdAA8ABQABAAAAAAAeAA8ABQABAAAAAAAfAA8ABQABAAAAAAAfAA4ABQABAAAAAAAcAA4ABQABAAAAAAAOAA0ABQABAAAAAAAPAA0ABQABAAAAAAAQAA0ABQABAAAAAAARAA0ABQABAAAAAAASAA0ABQABAAAAAAATAA0ABQABAAAAAAAOAA4ABQABAAAAAAAOAA8ABQABAAAAAAAOABAABQABAAAAAAAOABEABQABAAAAAAAOABIABQABAAAAAAAOABMABQABAAAAAAAOABQABQABAAAAAAAOABUABQABAAAAAAAPABUABQABAAAAAAAQABUABQABAAAAAAARABUABQABAAAAAAASABUABQABAAAAAAATABUABQABAAAAAAAUABUABQABAAAAAAAVABUABQABAAAAAAATABIABQABAAAAAAASABIABQABAAAAAAARABIABQABAAAAAAARABEABQABAAAAAAARABAABQABAAAAAAAYABUABQABAAAAAAAZABUABQABAAAAAAAaABUABQABAAAAAAAbABUABQABAAAAAAAcABUABQABAAAAAAAdABUABQABAAAAAAAeABUABQABAAAAAAAfABUABQABAAAAAAAfABEABQABAAAAAAAfABAABQABAAAAAAAfABIABQABAAAAAAAfABMABQABAAAAAAAfABQABQABAAAAAAAaABQABQABAAAAAAAaABMABQABAAAAAAA=")
+tile_set = SubResource("TileSet_lquwl")
+script = ExtResource("2_0xm2m")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(304, 320)
+collision_mask = 14
+script = ExtResource("4_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(28, 28)
+texture = ExtResource("4_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Pickup" type="Area2D" parent="."]
+position = Vector2(336, 320)
+collision_layer = 4
+script = ExtResource("6_5vw27")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pickup"]
+modulate = Color(1, 1, 0, 1)
+material = SubResource("ShaderMaterial_272bh")
+scale = Vector2(16, 16)
+texture = ExtResource("4_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
+shape = SubResource("CircleShape2D_5vw27")
+
+[node name="AudioListener2D" type="AudioStreamPlayer2D" parent="Pickup"]
+position = Vector2(1, 0)
+stream = ExtResource("8_kek77")
+bus = &"SFX"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(399, 238)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Door" type="StaticBody2D" parent="."]
+position = Vector2(368, 344)
+collision_layer = 8
+script = ExtResource("10_4c57u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(32, 8)
+texture = ExtResource("4_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="FinishZone" type="Area2D" parent="."]
+position = Vector2(368, 346)
+script = ExtResource("11_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishZone"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_4c57u")
+debug_color = Color(0, 0.6500302, 0.13108873, 0.41960785)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_kek77")
+metadata/_edit_use_anchors_ = true
+
+[node name="KeyCountLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 176.0
+offset_right = 201.0
+offset_bottom = 199.0
+text = "0 / 1 Keys"
+metadata/_edit_group_ = true
+
+[node name="EndScreen" type="Panel" parent="UI"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = 64.0
+offset_right = 640.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ClearedLabel" type="Label" parent="UI/EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cleared Level"
+label_settings = SubResource("LabelSettings_efxa6")
+
+[node name="Again" type="Button" parent="UI/EndScreen"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 208.0
+offset_right = 292.0
+offset_bottom = 239.0
+text = "Again"
