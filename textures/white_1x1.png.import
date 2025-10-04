@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://botl34i3npkc6"
-path="res://.godot/imported/white_strip_16px_h.png-a41fea5a9729cb792a0eec1c627943b3.ctex"
+uid="uid://dok5wba7gako"
+path="res://.godot/imported/white_1x1.png-8d0bce7be3bfd2c7a987a47a0a22ef73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://white_strip_16px_h.png"
-dest_files=["res://.godot/imported/white_strip_16px_h.png-a41fea5a9729cb792a0eec1c627943b3.ctex"]
+source_file="res://textures/white_1x1.png"
+dest_files=["res://.godot/imported/white_1x1.png-8d0bce7be3bfd2c7a987a47a0a22ef73.ctex"]
 
 [params]
 

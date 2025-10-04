@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://bccnodegnnx08"]
+
+[ext_resource type="PackedScene" uid="uid://beos8jvwwdfb" path="res://ui/ui_inv_item.tscn" id="1_snfsq"]
+
+[node name="UIInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+offset_right = 233.0
+offset_bottom = 154.0
+columns = 3
+
+[node name="UIInvItem" parent="GridContainer" instance=ExtResource("1_snfsq")]
+layout_mode = 2
+
+[node name="Item2" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Item2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.28
+anchor_right = 1.0
+anchor_bottom = 0.58666664
+grow_horizontal = 2
+grow_vertical = 2
+text = "Item"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="GridContainer/Item2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.6666667
+anchor_right = 0.93333334
+anchor_bottom = 0.97333336
+text = "7"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item3" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Item3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.28
+anchor_right = 1.0
+anchor_bottom = 0.58666664
+grow_horizontal = 2
+grow_vertical = 2
+text = "Item"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="GridContainer/Item3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.6666667
+anchor_right = 0.93333334
+anchor_bottom = 0.97333336
+text = "7"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item4" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Item4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.28
+anchor_right = 1.0
+anchor_bottom = 0.58666664
+grow_horizontal = 2
+grow_vertical = 2
+text = "Item"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="GridContainer/Item4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.6666667
+anchor_right = 0.93333334
+anchor_bottom = 0.97333336
+text = "7"
+metadata/_edit_use_anchors_ = true

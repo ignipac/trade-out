@@ -1,33 +1,17 @@
-[gd_scene load_steps=20 format=4 uid="uid://dyr1ccd4y2c6d"]
+[gd_scene load_steps=19 format=4 uid="uid://dyr1ccd4y2c6d"]
 
 [ext_resource type="Script" uid="uid://bhu6moc1u4svu" path="res://scripts/game_controller.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://jl2v5073ctw4" path="res://scripts/level_layer.gd" id="2_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://white_strip_16px_h.png" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://white_1x1.png" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://bnmo0jk43v0lg" path="res://scripts/player.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bbw3npvynputn" path="res://scenes/level_layer.tscn" id="2_efxa6"]
+[ext_resource type="PackedScene" uid="uid://c5o0f7uqng7j1" path="res://scenes/player.tscn" id="3_dg77c"]
+[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://textures/white_1x1.png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://d1cxm8y44f1w4" path="res://scripts/pickup.gd" id="6_5vw27"]
 [ext_resource type="Shader" uid="uid://bbdvhmewrso8m" path="res://shaders/rounded_corners.gdshader" id="6_7mycd"]
-[ext_resource type="AudioStream" uid="uid://csd032ve86us1" path="res://sfx/pickup.ogg" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://y1appesvirn3" path="res://scenes/exit.tscn" id="8_dg77c"]
+[ext_resource type="AudioStream" uid="uid://csd032ve86us1" path="res://sfx/coin_pickup.ogg" id="8_kek77"]
 [ext_resource type="Script" uid="uid://djp175nqcct2h" path="res://scripts/ui.gd" id="9_kek77"]
-[ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://scripts/door.gd" id="10_4c57u"]
+[ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://scripts/exit.gd" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://bq1xq82psglp1" path="res://scripts/finish_zone.gd" id="11_efxa6"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
-texture = ExtResource("2_h2yge")
-0:0/0 = 0
-1:0/0 = 0
-1:0/0/modulate = Color(0, 0, 0, 1)
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_lquwl"]
-physics_layer_0/collision_layer = 2
-sources/5 = SubResource("TileSetAtlasSource_1bvp3")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(28, 28)
+[ext_resource type="Script" uid="uid://c7uhfeksf640n" path="res://scripts/trade.gd" id="12_dg77c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
 shader = ExtResource("6_7mycd")
@@ -45,64 +29,60 @@ size = Vector2(32, 2)
 [sub_resource type="LabelSettings" id="LabelSettings_efxa6"]
 font_size = 32
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg77c"]
+radius = 64.0
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ig7tw")
 
-[node name="LevelLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAWAAcABQABAAAAAAAVAAcABQABAAAAAAAUAAcABQABAAAAAAATAAcABQABAAAAAAASAAcABQABAAAAAAARAAcABQABAAAAAAAQAAcABQABAAAAAAAPAAcABQABAAAAAAAOAAcABQABAAAAAAAOAAgABQABAAAAAAAOAAkABQABAAAAAAAOAAoABQABAAAAAAAOAAsABQABAAAAAAAOAAwABQABAAAAAAAaAAcABQABAAAAAAAZAAcABQABAAAAAAAZAAgABQABAAAAAAAZAAkABQABAAAAAAAbAAcABQABAAAAAAAcAAcABQABAAAAAAAcAAoABQABAAAAAAAcAAsABQABAAAAAAAcAAwABQABAAAAAAAdAAcABQABAAAAAAAeAAcABQABAAAAAAAfAAcABQABAAAAAAAfAAgABQABAAAAAAAfAAkABQABAAAAAAAfAAoABQABAAAAAAAfAAsABQABAAAAAAAfAAwABQABAAAAAAAfAA0ABQABAAAAAAAcAA0ABQABAAAAAAAZAAwABQABAAAAAAAZAA0ABQABAAAAAAAZAA4ABQABAAAAAAAZAA8ABQABAAAAAAARAAoABQABAAAAAAASAAoABQABAAAAAAATAAoABQABAAAAAAAUAAoABQABAAAAAAAWAAoABQABAAAAAAAVAAoABQABAAAAAAAWAAsABQABAAAAAAAWAAwABQABAAAAAAAWAA0ABQABAAAAAAAWAA4ABQABAAAAAAAWAA8ABQABAAAAAAAZABAABQABAAAAAAAZABIABQABAAAAAAAYABIABQABAAAAAAAXABIABQABAAAAAAAWABIABQABAAAAAAAVABIABQABAAAAAAAUABIABQABAAAAAAAaABIABQABAAAAAAAbABIABQABAAAAAAAcABIABQABAAAAAAAZABEABQABAAAAAAAcAA8ABQABAAAAAAAdAA8ABQABAAAAAAAeAA8ABQABAAAAAAAfAA8ABQABAAAAAAAfAA4ABQABAAAAAAAcAA4ABQABAAAAAAAOAA0ABQABAAAAAAAPAA0ABQABAAAAAAAQAA0ABQABAAAAAAARAA0ABQABAAAAAAASAA0ABQABAAAAAAATAA0ABQABAAAAAAAOAA4ABQABAAAAAAAOAA8ABQABAAAAAAAOABAABQABAAAAAAAOABEABQABAAAAAAAOABIABQABAAAAAAAOABMABQABAAAAAAAOABQABQABAAAAAAAOABUABQABAAAAAAAPABUABQABAAAAAAAQABUABQABAAAAAAARABUABQABAAAAAAASABUABQABAAAAAAATABUABQABAAAAAAAUABUABQABAAAAAAAVABUABQABAAAAAAATABIABQABAAAAAAASABIABQABAAAAAAARABIABQABAAAAAAARABEABQABAAAAAAARABAABQABAAAAAAAYABUABQABAAAAAAAZABUABQABAAAAAAAaABUABQABAAAAAAAbABUABQABAAAAAAAcABUABQABAAAAAAAdABUABQABAAAAAAAeABUABQABAAAAAAAfABUABQABAAAAAAAfABEABQABAAAAAAAfABAABQABAAAAAAAfABIABQABAAAAAAAfABMABQABAAAAAAAfABQABQABAAAAAAAaABQABQABAAAAAAAaABMABQABAAAAAAA=")
-tile_set = SubResource("TileSet_lquwl")
-script = ExtResource("2_0xm2m")
+[node name="LevelLayer" parent="." instance=ExtResource("2_efxa6")]
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAAWAAUABQABAAAAAAAWAAYABQABAAAAAAAWAAoABQABAAAAAAAaAAUABQABAAAAAAAaAAYABQABAAAAAAAVAAYABQABAAAAAAAUAAYABQABAAAAAAAUAAUABQABAAAAAAATAAUABQABAAAAAAATAAQABQABAAAAAAASAAQABQABAAAAAAARAAQABQABAAAAAAAQAAQABQABAAAAAAAQAAMABQABAAAAAAAPAAMABQABAAAAAAAOAAMABQABAAAAAAANAAMABQABAAAAAAANAAQABQABAAAAAAAMAAQABQABAAAAAAALAAQABQABAAAAAAAVAAoABQABAAAAAAAUAAoABQABAAAAAAATAAoABQABAAAAAAASAAoABQABAAAAAAARAAoABQABAAAAAAARAAsABQABAAAAAAARAAwABQABAAAAAAAQAAwABQABAAAAAAAPAAwABQABAAAAAAAPAA0ABQABAAAAAAAPAA4ABQABAAAAAAAPABIABQABAAAAAAAQABIABQABAAAAAAARABIABQABAAAAAAARABMABQABAAAAAAARABQABQABAAAAAAARABUABQABAAAAAAASABUABQABAAAAAAATABUABQABAAAAAAAUABUABQABAAAAAAAVABUABQABAAAAAAAKAAUABQABAAAAAAAJAAUABQABAAAAAAAJAAYABQABAAAAAAAKAAYABQABAAAAAAAJAAcABQABAAAAAAAJAAgABQABAAAAAAAJAAkABQABAAAAAAAIAAoABQABAAAAAAAIAAsABQABAAAAAAAIAAwABQABAAAAAAAJAAwABQABAAAAAAAJAA0ABQABAAAAAAAJAA4ABQABAAAAAAAKAA4ABQABAAAAAAAKAA8ABQABAAAAAAALAA8ABQABAAAAAAALABAABQABAAAAAAAKABAABQABAAAAAAAKABEABQABAAAAAAALABEABQABAAAAAAAMABEABQABAAAAAAAMABIABQABAAAAAAANABIABQABAAAAAAAOABIABQABAAAAAAAaAAwABQABAAAAAAAZAAwABQABAAAAAAAZAA0ABQABAAAAAAAZAA4ABQABAAAAAAAaAA4ABQABAAAAAAAaAA8ABQABAAAAAAAbAA8ABQABAAAAAAAcAA8ABQABAAAAAAAdAA8ABQABAAAAAAAeAA8ABQABAAAAAAAfAA8ABQABAAAAAAAfABEABQABAAAAAAAfABAABQABAAAAAAAfABQABQABAAAAAAAfABUABQABAAAAAAAeABUABQABAAAAAAAYABUABQABAAAAAAAZABUABQABAAAAAAAaABUABQABAAAAAAAbABUABQABAAAAAAAcABUABQABAAAAAAAdABUABQABAAAAAAAfAA4ABQABAAAAAAAfAA0ABQABAAAAAAAfAAwABQABAAAAAAAfAAsABQABAAAAAAAfAAoABQABAAAAAAAeAAoABQABAAAAAAAeAAkABQABAAAAAAAeAAgABQABAAAAAAAeAAcABQABAAAAAAAdAAcABQABAAAAAAAdAAYABQABAAAAAAAdAAUABQABAAAAAAAcAAUABQABAAAAAAAbAAUABQABAAAAAAAZAAUABQABAAAAAAAXAAUABQABAAAAAAAYAAUABQABAAAAAAAaAAcABQABAAAAAAAaAAgABQABAAAAAAA=")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(304, 320)
-collision_mask = 14
-script = ExtResource("4_lquwl")
+[node name="Player" parent="." instance=ExtResource("3_dg77c")]
+position = Vector2(384, 128)
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(28, 28)
-texture = ExtResource("4_1bvp3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_lquwl")
-
-[node name="Pickup" type="Area2D" parent="."]
-position = Vector2(336, 320)
+[node name="Key" type="Area2D" parent="."]
+position = Vector2(480, 224)
 collision_layer = 4
 script = ExtResource("6_5vw27")
 
-[node name="Sprite2D" type="Sprite2D" parent="Pickup"]
+[node name="Sprite2D" type="Sprite2D" parent="Key"]
 modulate = Color(1, 1, 0, 1)
 material = SubResource("ShaderMaterial_272bh")
 scale = Vector2(16, 16)
 texture = ExtResource("4_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
 shape = SubResource("CircleShape2D_5vw27")
 
-[node name="AudioListener2D" type="AudioStreamPlayer2D" parent="Pickup"]
+[node name="AudioListener2D" type="AudioStreamPlayer2D" parent="Key"]
 position = Vector2(1, 0)
 stream = ExtResource("8_kek77")
 bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(399, 238)
-zoom = Vector2(1.5, 1.5)
+position = Vector2(480, 128)
 
-[node name="Door" type="StaticBody2D" parent="."]
-position = Vector2(368, 344)
+[node name="Exit" parent="." instance=ExtResource("8_dg77c")]
+position = Vector2(368, 336)
+
+[node name="Gateway" type="StaticBody2D" parent="."]
+position = Vector2(512, 304)
+rotation = 1.5707964
 collision_layer = 8
 script = ExtResource("10_4c57u")
 
-[node name="Sprite2D" type="Sprite2D" parent="Door"]
-modulate = Color(1, 1, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="Gateway"]
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(32, 8)
 texture = ExtResource("4_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gateway"]
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="FinishZone" type="Area2D" parent="."]
-position = Vector2(368, 346)
+position = Vector2(368, 347)
 script = ExtResource("11_efxa6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishZone"]
@@ -122,10 +102,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="KeyCountLabel" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 176.0
-offset_right = 201.0
-offset_bottom = 199.0
+offset_left = 528.0
+offset_top = 144.0
+offset_right = 601.0
+offset_bottom = 167.0
 text = "0 / 1 Keys"
 metadata/_edit_group_ = true
 
@@ -166,3 +146,15 @@ offset_top = 208.0
 offset_right = 292.0
 offset_bottom = 239.0
 text = "Again"
+
+[node name="Trader" type="Area2D" parent="."]
+position = Vector2(256, 144)
+script = ExtResource("12_dg77c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Trader"]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(28, 28)
+texture = ExtResource("4_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trader"]
+shape = SubResource("CircleShape2D_dg77c")

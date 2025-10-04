@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dct5qvl6rss16"
-path="res://.godot/imported/white_64x64.png-684dd2c4d374b6174f33a7cfd6c6b69a.ctex"
+uid="uid://c4w6sxwj38jw8"
+path="res://.godot/imported/maze_icon.svg-10a180567ca14cfaad7c288c1b357137.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://white_64x64.png"
-dest_files=["res://.godot/imported/white_64x64.png-684dd2c4d374b6174f33a7cfd6c6b69a.ctex"]
+source_file="res://maze_icon.svg"
+dest_files=["res://.godot/imported/maze_icon.svg-10a180567ca14cfaad7c288c1b357137.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

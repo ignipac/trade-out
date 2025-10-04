@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbw3npvynputn"]
+
+[ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://textures/white_strip_16px_h.png" id="1_wd0p4"]
+[ext_resource type="Script" uid="uid://jl2v5073ctw4" path="res://scripts/level_layer.gd" id="2_qqsg6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
+texture = ExtResource("1_wd0p4")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/modulate = Color(0, 0, 0, 1)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lquwl"]
+physics_layer_0/collision_layer = 2
+sources/5 = SubResource("TileSetAtlasSource_1bvp3")
+
+[node name="LevelLayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_lquwl")
+script = ExtResource("2_qqsg6")

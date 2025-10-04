@@ -10,9 +10,18 @@ config_version=5
 
 [application]
 
-config/name="a-way-out"
+config/name="maze-and-trade"
+run/main_scene="uid://dyr1ccd4y2c6d"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://c4w6sxwj38jw8"
+
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
@@ -25,3 +34,4 @@ config/icon="res://icon.svg"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

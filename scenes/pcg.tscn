@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://br42lc8xwr6ud"]
+
+[ext_resource type="Script" uid="uid://d0xxk3e82toc8" path="res://pcg/backtracking.gd" id="1_664a0"]
+[ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://textures/white_strip_16px_h.png" id="1_bacr0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bacr0"]
+texture = ExtResource("1_bacr0")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/modulate = Color(0, 0, 0, 1)
+2:0/0 = 0
+2:0/0/modulate = Color(0, 0, 0, 1)
+3:0/0 = 0
+3:0/0/modulate = Color(0, 0, 0, 1)
+4:0/0 = 0
+4:0/0/modulate = Color(0, 0, 0, 1)
+
+[sub_resource type="TileSet" id="TileSet_7qjke"]
+sources/0 = SubResource("TileSetAtlasSource_bacr0")
+
+[node name="PCG" type="Node2D"]
+
+[node name="Backtracking" type="TileMapLayer" parent="."]
+position = Vector2(416, 128)
+tile_set = SubResource("TileSet_7qjke")
+script = ExtResource("1_664a0")

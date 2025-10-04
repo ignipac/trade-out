@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://beos8jvwwdfb"]
+
+[node name="UIInvItem" type="Panel"]
+custom_minimum_size = Vector2(75, 75)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.28
+anchor_right = 1.0
+anchor_bottom = 0.58666664
+grow_horizontal = 2
+grow_vertical = 2
+text = "Item"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.6666667
+anchor_right = 0.93333334
+anchor_bottom = 0.97333336
+text = "7"
+metadata/_edit_use_anchors_ = true
