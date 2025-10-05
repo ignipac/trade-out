@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="maze-and-trade"
-run/main_scene="uid://dyr1ccd4y2c6d"
+run/main_scene="uid://brg7kfusofwbr"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://c4w6sxwj38jw8"
 

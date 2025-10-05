@@ -1,13 +1,22 @@
-[gd_scene load_steps=13 format=4 uid="uid://brg7kfusofwbr"]
+[gd_scene load_steps=16 format=4 uid="uid://brg7kfusofwbr"]
 
 [ext_resource type="PackedScene" uid="uid://c5o0f7uqng7j1" path="res://scenes/player.tscn" id="1_2ymfe"]
 [ext_resource type="PackedScene" uid="uid://bbw3npvynputn" path="res://scenes/level_layer.tscn" id="2_vsbsm"]
+[ext_resource type="PackedScene" uid="uid://beos8jvwwdfb" path="res://ui/ui_inv_item.tscn" id="2_xbpde"]
 [ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://scripts/exit.gd" id="3_fb5af"]
-[ext_resource type="PackedScene" uid="uid://c2q78lmic1xvf" path="res://ui/ui_shop.tscn" id="3_ugl5d"]
 [ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://textures/white_1x1.png" id="4_ck7gy"]
 [ext_resource type="Shader" uid="uid://bbdvhmewrso8m" path="res://shaders/rounded_corners.gdshader" id="5_ck7gy"]
 [ext_resource type="Script" uid="uid://b36xphke401ej" path="res://scripts/start_bal.gd" id="5_dwbf3"]
 [ext_resource type="Script" uid="uid://cxobyb83ws3uo" path="res://scripts/trader.gd" id="7_6rfuk"]
+[ext_resource type="Script" uid="uid://dg82433dgjcp" path="res://scripts/shop.gd" id="9_xbpde"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbpde"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(48, 12)
@@ -22,10 +31,55 @@ radius = 8.062258
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rfuk"]
 radius = 48.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3rlo"]
+bg_color = Color(0.16, 0.16, 0.16, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="Demo1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_2ymfe")]
 position = Vector2(424, 88)
+
+[node name="UI" type="CanvasLayer" parent="Player"]
+
+[node name="UIInventory" type="Control" parent="Player/UI"]
+layout_mode = 3
+anchor_left = 0.5208333
+anchor_top = 0.38271606
+anchor_right = 0.5208333
+anchor_bottom = 0.38271606
+offset_left = 160.0
+offset_top = 48.0
+offset_right = 160.0
+offset_bottom = 48.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Player/UI/UIInventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -40.0
+offset_right = 77.0
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xbpde")
+
+[node name="GridContainer" type="GridContainer" parent="Player/UI/UIInventory/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 235.0
+offset_bottom = 77.0
+columns = 3
+
+[node name="UIInvItem" parent="Player/UI/UIInventory/Panel/GridContainer" instance=ExtResource("2_xbpde")]
+layout_mode = 2
 
 [node name="LevelLayer" parent="." instance=ExtResource("2_vsbsm")]
 tile_map_data = PackedByteArray("AAAYAAgABQABAAAAAAAYAAkABQABAAAAAAAYAAoABQABAAAAAAAYAAsABQABAAAAAAAdAA0ABQABAAAAAAAeAA0ABQABAAAAAAAfAA0ABQABAAAAAAAcAA0ABQABAAAAAAAcABAABQABAAAAAAAdABAABQABAAAAAAAeABAABQABAAAAAAAfABAABQABAAAAAAAYAAwABQABAAAAAAAXAAwABQABAAAAAAAWAAwABQABAAAAAAAVAAwABQABAAAAAAARAAkABQABAAAAAAARAAoABQABAAAAAAARAAsABQABAAAAAAARAAwABQABAAAAAAAQAAwABQABAAAAAAAPAAwABQABAAAAAAAIAAsABQABAAAAAAAIAAwABQABAAAAAAAIAA0ABQABAAAAAAAIAA4ABQABAAAAAAALABEABQABAAAAAAAMABEABQABAAAAAAANABEABQABAAAAAAAOABEABQABAAAAAAAdABcABQABAAAAAAAdABYABQABAAAAAAAdABUABQABAAAAAAAdABQABQABAAAAAAAgABAABQABAAAAAAAhABAABQABAAAAAAAiABAABQABAAAAAAAUAAUABQABAAAAAAATAAUABQABAAAAAAASAAUABQABAAAAAAARAAUABQABAAAAAAAQAAUABQABAAAAAAAPAAUABQABAAAAAAAPAAYABQABAAAAAAAPAAcABQABAAAAAAAjABAABQABAAAAAAAgAA0ABQABAAAAAAAhAA0ABQABAAAAAAAYAAcABQABAAAAAAAYAAYABQABAAAAAAAYAAUABQABAAAAAAAhAAkABQABAAAAAAAhAAgABQABAAAAAAAhAAcABQABAAAAAAAiAAcABQABAAAAAAAjAAcABQABAAAAAAAkAAcABQABAAAAAAAlAAcABQABAAAAAAAmAAcABQABAAAAAAAiAA0ABQABAAAAAAAjAA0ABQABAAAAAAAkAA0ABQABAAAAAAAlAA0ABQABAAAAAAAmAA0ABQABAAAAAAAnAA0ABQABAAAAAAAoAA0ABQABAAAAAAApAA0ABQABAAAAAAApAAwABQABAAAAAAApAAsABQABAAAAAAApAAoABQABAAAAAAApAAkABQABAAAAAAApAAgABQABAAAAAAApAAcABQABAAAAAAAoAAcABQABAAAAAAAnAAcABQABAAAAAAAcAAYABQABAAAAAAAcAAcABQABAAAAAAAcAAgABQABAAAAAAAcAAkABQABAAAAAAAdAAkABQABAAAAAAAeAAkABQABAAAAAAAfAAkABQABAAAAAAAgAAkABQABAAAAAAAcAA4ABQABAAAAAAAcAA8ABQABAAAAAAAeABQABQABAAAAAAAfABQABQABAAAAAAAgABQABQABAAAAAAAhABQABQABAAAAAAAiABQABQABAAAAAAAjABQABQABAAAAAAAVAAkABQABAAAAAAAVAAoABQABAAAAAAAVAAsABQABAAAAAAAVAAgABQABAAAAAAAVAAcABQABAAAAAAAVAAYABQABAAAAAAAVAAUABQABAAAAAAAPAAgABQABAAAAAAAQAAkABQABAAAAAAAPAAkABQABAAAAAAAPAAsABQABAAAAAAAOAAsABQABAAAAAAANAAsABQABAAAAAAAIAA8ABQABAAAAAAAIABAABQABAAAAAAAJABAABQABAAAAAAAKABAABQABAAAAAAAKABEABQABAAAAAAAOABIABQABAAAAAAAYABkABQABAAAAAAAZABkABQABAAAAAAAaABkABQABAAAAAAAbABkABQABAAAAAAAcABkABQABAAAAAAAdABkABQABAAAAAAAdABgABQABAAAAAAAJAAsABQABAAAAAAAKAAsABQABAAAAAAALAAsABQABAAAAAAAMAAsABQABAAAAAAAPABIABQABAAAAAAAQABIABQABAAAAAAASABIABQABAAAAAAARABIABQABAAAAAAATABIABQABAAAAAAAUABIABQABAAAAAAATABYABQABAAAAAAASABYABQABAAAAAAARABYABQABAAAAAAAQABYABQABAAAAAAAPABYABQABAAAAAAAOABYABQABAAAAAAAOABcABQABAAAAAAAOABgABQABAAAAAAAOABkABQABAAAAAAAOABoABQABAAAAAAAOABsABQABAAAAAAAPABsABQABAAAAAAAQABsABQABAAAAAAARABsABQABAAAAAAASABsABQABAAAAAAAWABsABQABAAAAAAAXABsABQABAAAAAAAYABsABQABAAAAAAAYABoABQABAAAAAAAUABMABQABAAAAAAAUABQABQABAAAAAAAUABUABQABAAAAAAAUABYABQABAAAAAAAVABsABQABAAAAAAAUABsABQABAAAAAAATABsABQABAAAAAAA=")
@@ -156,8 +210,66 @@ shape = SubResource("CircleShape2D_6rfuk")
 
 [node name="UI" type="CanvasLayer" parent="Trader"]
 
-[node name="UIShop" parent="Trader/UI" instance=ExtResource("3_ugl5d")]
+[node name="UIShop" type="Control" parent="Trader/UI"]
 visible = false
+layout_mode = 3
 anchor_left = 0.7013889
 anchor_right = 0.9236111
+anchor_bottom = 0.9876543
 grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("9_xbpde")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Trader/UI/UIShop"]
+self_modulate = Color(1, 1, 1, 0.7019608)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3rlo")
+
+[node name="Label" type="Label" parent="Trader/UI/UIShop"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.0859375
+grow_horizontal = 2
+text = "Trader #1"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Items" type="VBoxContainer" parent="Trader/UI/UIShop"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.125
+anchor_right = 0.875
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Item1" type="HBoxContainer" parent="Trader/UI/UIShop/Items"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ItemName" type="Label" parent="Trader/UI/UIShop/Items/Item1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Silk"
+
+[node name="BuyButton" type="Button" parent="Trader/UI/UIShop/Items/Item1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="Trader/UI/UIShop/Items/Item1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sell"
