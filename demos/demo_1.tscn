@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://brg7kfusofwbr"]
+[gd_scene load_steps=17 format=4 uid="uid://brg7kfusofwbr"]
 
 [ext_resource type="PackedScene" uid="uid://c5o0f7uqng7j1" path="res://scenes/player.tscn" id="1_2ymfe"]
+[ext_resource type="Script" uid="uid://dag3xvapth8wh" path="res://scripts/ui_player.gd" id="2_fxjij"]
 [ext_resource type="PackedScene" uid="uid://bbw3npvynputn" path="res://scenes/level_layer.tscn" id="2_vsbsm"]
 [ext_resource type="PackedScene" uid="uid://beos8jvwwdfb" path="res://ui/ui_inv_item.tscn" id="2_xbpde"]
 [ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://scripts/exit.gd" id="3_fb5af"]
@@ -43,9 +44,9 @@ corner_radius_bottom_left = 16
 [node name="Player" parent="." instance=ExtResource("1_2ymfe")]
 position = Vector2(424, 88)
 
-[node name="UI" type="CanvasLayer" parent="Player"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 
-[node name="UIInventory" type="Control" parent="Player/UI"]
+[node name="UI" type="Control" parent="Player/CanvasLayer"]
 layout_mode = 3
 anchor_left = 0.5208333
 anchor_top = 0.38271606
@@ -55,9 +56,57 @@ offset_left = 160.0
 offset_top = 48.0
 offset_right = 160.0
 offset_bottom = 48.0
+script = ExtResource("2_fxjij")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="Player/UI/UIInventory"]
+[node name="QContainer" type="HBoxContainer" parent="Player/CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = -233.0
+offset_right = 12.0
+offset_bottom = -210.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/UI/QContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Target"
+
+[node name="TarLabel" type="Label" parent="Player/CanvasLayer/UI/QContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10"
+horizontal_alignment = 2
+
+[node name="BContainer" type="HBoxContainer" parent="Player/CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -195.5
+offset_right = 15.0
+offset_bottom = -172.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/UI/BContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Balance"
+
+[node name="BalLabel" type="Label" parent="Player/CanvasLayer/UI/BContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Panel" type="Panel" parent="Player/CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,15 +119,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xbpde")
 
-[node name="GridContainer" type="GridContainer" parent="Player/UI/UIInventory/Panel"]
+[node name="Inv_Container" type="GridContainer" parent="Player/CanvasLayer/UI"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 235.0
-offset_bottom = 77.0
+offset_left = -158.0
+offset_top = -38.0
+offset_right = 75.0
+offset_bottom = 37.0
 columns = 3
 
-[node name="UIInvItem" parent="Player/UI/UIInventory/Panel/GridContainer" instance=ExtResource("2_xbpde")]
+[node name="UIInvItem" parent="Player/CanvasLayer/UI/Inv_Container" instance=ExtResource("2_xbpde")]
 layout_mode = 2
 
 [node name="LevelLayer" parent="." instance=ExtResource("2_vsbsm")]
@@ -113,56 +162,6 @@ offset_top = 288.0
 offset_right = 573.0
 offset_bottom = 320.0
 text = "Exit"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 0.6076389
-anchor_top = 0.097222224
-anchor_right = 0.6944444
-anchor_bottom = 0.24845679
-metadata/_edit_use_anchors_ = true
-
-[node name="Quota" type="HBoxContainer" parent="CanvasLayer/Panel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/Panel/Quota"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Quota"
-
-[node name="Amount" type="Label" parent="CanvasLayer/Panel/Quota"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "10"
-horizontal_alignment = 2
-
-[node name="Balance" type="HBoxContainer" parent="CanvasLayer/Panel"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/Panel/Balance"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Balance"
-
-[node name="Amount" type="Label" parent="CanvasLayer/Panel/Balance"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0"
-horizontal_alignment = 2
 
 [node name="Exit" type="StaticBody2D" parent="."]
 position = Vector2(570, 296)

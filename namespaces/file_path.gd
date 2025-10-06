@@ -10,6 +10,11 @@ const SFX_COIN_PICKUP = preload("res://sfx/coin_pickup.ogg")
 const SFX_CLICK = preload("res://sfx/click.ogg")
 const SFX_WHOOSH = preload("res://sfx/whoosh.ogg")
 const SFX_WHOOSH_REVERSE = preload("res://sfx/whoosh_reverse.ogg")
+const SFX_POP = preload("res://sfx/pop.ogg")
 
 # ---------- Input ----------
 const INPUT_TOUCH = preload("res://scripts/input_handler_touch.gd")
+
+
+# ---------- UI ----------
+const UI_INV_ITEM = "res://ui/ui_inv_item.tscn"

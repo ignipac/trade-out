@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://y1appesvirn3" path="res://scenes/exit.tscn" id="8_bc65o"]
 [ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://scripts/exit.gd" id="9_q5ntt"]
 [ext_resource type="Script" uid="uid://bq1xq82psglp1" path="res://scripts/finish_zone.gd" id="10_gt1ie"]
-[ext_resource type="Script" uid="uid://djp175nqcct2h" path="res://scripts/ui.gd" id="11_qytfp"]
+[ext_resource type="Script" uid="uid://djp175nqcct2h" path="res://scripts/ui_trading_example.gd" id="11_qytfp"]
 [ext_resource type="Script" uid="uid://c7uhfeksf640n" path="res://scripts/trade.gd" id="12_2fa8o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]

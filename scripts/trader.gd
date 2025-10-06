@@ -38,6 +38,7 @@ func _ready() -> void:
 			sfx.play()
 
 		# Implement buying logic here
+		player.buy_item("silk", 5)
 	)
 	ui_shop.sell_button.pressed.connect(func() -> void:
 		if player == null:
@@ -68,10 +69,14 @@ func load_shop_ui() -> void:
 	if not ui_shop:
 		return
 	
+	if ui_shop.visible:
+		return
+
 	var sfx = Utility.create_sfx_player(FILE_PATH.SFX_WHOOSH)
 	add_child(sfx)
 	sfx.name = "sfx_whoosh"
 	sfx.play()
+
 	ui_shop.visible = true
 
 func unload_shop_ui() -> void:
