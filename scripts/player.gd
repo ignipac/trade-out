@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
+var inventory := FILE_PATH.MODEL_INVENTORY.new()
+
 var coins: int = 20
-var items := []
 var key_count: int
 var is_using_touch: bool = false
 
@@ -29,11 +30,16 @@ func _physics_process(delta: float) -> void:
 func buy_item(item: String, price: int) -> bool:
 	if coins >= price:
 		set_balance(coins - price) # update balance
-		ui.add_inventory_item(item) # add item to inventory ui
-		items.append(item) # store item in data model
+		
+		if inventory.items.has(item):
+			inventory.items[item] += 1 # update item quantity in data model
+			ui.update_inventory_item(item).text = str(inventory.items[item]) # update item quantity in inventory ui
+		else:
+			inventory.items[item] = 1 # store item in data model
+			ui.add_inventory_item(item).text = str(inventory.items[item]) # add item to inventory ui
 		return true
 
-	print_debug("not enough coins")
+
 	return false
 
 func set_balance(amount: int) -> void:

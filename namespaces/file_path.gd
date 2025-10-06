@@ -18,3 +18,8 @@ const INPUT_TOUCH = preload("res://scripts/input_handler_touch.gd")
 
 # ---------- UI ----------
 const UI_INV_ITEM = "res://ui/ui_inv_item.tscn"
+
+
+# ---------- Models ----------
+const MODEL_INVENTORY = preload("res://data_models/inventory.model.gd")
+const MODEL_MARKET = preload("res://data_models/market.model.gd")

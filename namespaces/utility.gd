@@ -11,3 +11,4 @@ static func add_action_for_key(tag: String, key: int) -> void:
 	var event = InputEventKey.new()
 	event.physical_keycode = key
 	InputMap.action_add_event(tag, event)
+	

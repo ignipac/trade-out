@@ -65,3 +65,10 @@ text = "Buy"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sell"
+
+[node name="ErrorLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 592.0
+offset_right = 208.0
+offset_bottom = 615.0

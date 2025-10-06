@@ -2,7 +2,6 @@ extends Area2D
 
 @export var canvas: CanvasLayer
 
-var maybe_load_dynamically: String = "res://ui/ui_shop.tscn"
 var player = null
 
 @onready var ui_shop := $UI/UIShop
@@ -38,7 +37,12 @@ func _ready() -> void:
 			sfx.play()
 
 		# Implement buying logic here
-		player.buy_item("silk", 5)
+		if not player.buy_item("silk", 5):
+			ui_shop.error_label.text = "Not enough coins!"
+			print_debug("not enough coins")
+			ui_shop.error_label.visible = true
+		else:
+			ui_shop.error_label.visible = false
 	)
 	ui_shop.sell_button.pressed.connect(func() -> void:
 		if player == null:
