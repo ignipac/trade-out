@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var init_balance: int = 30
+
 # Animation control variables
 @export var animation_speed: float = 2.0 # How fast it bobs (higher = faster)
 @export var animation_amplitude: float = 10.0 # How far it moves up/down (pixels)
@@ -17,6 +19,7 @@ func _ready() -> void:
 	body_entered.connect(func(body) -> void:
 		if body.name == "Player":
 			body.found_key.emit()
+			body.set_balance(init_balance) # set initial balance
 			destroy()
 	)
 

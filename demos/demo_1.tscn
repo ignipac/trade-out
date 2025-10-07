@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://brg7kfusofwbr"]
+[gd_scene load_steps=18 format=4 uid="uid://brg7kfusofwbr"]
 
 [ext_resource type="PackedScene" uid="uid://c5o0f7uqng7j1" path="res://scenes/player.tscn" id="1_2ymfe"]
 [ext_resource type="Script" uid="uid://dag3xvapth8wh" path="res://scripts/ui_player.gd" id="2_fxjij"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b36xphke401ej" path="res://scripts/start_bal.gd" id="5_dwbf3"]
 [ext_resource type="Script" uid="uid://cxobyb83ws3uo" path="res://scripts/trader.gd" id="7_6rfuk"]
 [ext_resource type="Script" uid="uid://dg82433dgjcp" path="res://scripts/shop.gd" id="9_xbpde"]
+[ext_resource type="Texture2D" uid="uid://n5x7wcx44v8l" path="res://icons/icon_trade.png" id="10_fdsq3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbpde"]
 draw_center = false
@@ -206,6 +207,9 @@ texture = ExtResource("4_ck7gy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trader"]
 shape = SubResource("CircleShape2D_6rfuk")
+
+[node name="Icon" type="Sprite2D" parent="Trader"]
+texture = ExtResource("10_fdsq3")
 
 [node name="UI" type="CanvasLayer" parent="Trader"]
 

@@ -15,5 +15,10 @@ func update_inventory_item(item: String) -> Node:
 	for child in inv_container.get_children():
 		if child.get_child(0).text == item:
 			return child.get_child(1)
+	return null
 
+func get_inventory_item_ui(item: String) -> Node:
+	for child in inv_container.get_children():
+		if child.get_child(0).text == item:
+			return child
 	return null

@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 var inventory := FILE_PATH.MODEL_INVENTORY.new()
 
-var coins: int = 20
+var coins: int = 0
 var key_count: int
 var is_using_touch: bool = false
+
+var level: RefCounted = null
 
 @onready var ui = $CanvasLayer/UI
 
@@ -14,8 +16,10 @@ signal found_key
 var input_touch := FILE_PATH.INPUT_TOUCH.new() # NOTE: rm & unique mobile input
 
 func _ready() -> void:
+	set_balance(20) # initialize balance display
 	add_to_group("player")
 	add_child(input_touch)
+	input_touch.name = "input_touch"
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
@@ -38,10 +42,21 @@ func buy_item(item: String, price: int) -> bool:
 			inventory.items[item] = 1 # store item in data model
 			ui.add_inventory_item(item).text = str(inventory.items[item]) # add item to inventory ui
 		return true
+	return false
 
-
+func sell_item(item: String, price: int) -> bool:
+	if inventory.items.has(item) and inventory.items[item] > 0:
+		set_balance(coins + price) # update balance
+		inventory.items[item] -= 1 # udate item quantity in data model
+		ui.update_inventory_item(item).text = str(inventory.items[item]) # update item quantity in inventory ui
+		if inventory.items[item] == 0:
+			inventory.items.erase(item) # remove item from data model if qty is 0
+			var item_ui = ui.get_inventory_item_ui(item)
+			if item_ui:
+				item_ui.queue_free() # remove item from inventory ui
+		return true
 	return false
 
 func set_balance(amount: int) -> void:
 	coins = amount
-	ui.bal_label.text = str(amount)
+	ui.bal_label.text = str(coins)

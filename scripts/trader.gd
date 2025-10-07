@@ -59,6 +59,12 @@ func _ready() -> void:
 			sfx.play()
 
 		# Implement selling logic here
+		if not player.sell_item("silk", 3):
+			ui_shop.error_label.text = "No items to sell!"
+			print_debug("no items to sell")
+			ui_shop.error_label.visible = true
+		else:
+			ui_shop.error_label.visible = false
 	)
 
 	#endregion 
@@ -88,12 +94,12 @@ func unload_shop_ui() -> void:
 		print_debug("No Shop UI found")
 		return
 
-	var sfx = $sfx_whoosh as AudioStreamPlayer
-	if sfx:
-		sfx.stream = FILE_PATH.SFX_WHOOSH_REVERSE
-		sfx.play()
-		sfx.finished.connect(func() -> void:
-			sfx.queue_free()
-		)
-	
-	ui_shop.visible = false
+	if has_node("sfx_whoosh"):
+		var sfx = $sfx_whoosh as AudioStreamPlayer
+		if sfx:
+			sfx.stream = FILE_PATH.SFX_WHOOSH_REVERSE
+			sfx.play()
+			sfx.finished.connect(func() -> void:
+				sfx.queue_free()
+			)
+		ui_shop.visible = false
