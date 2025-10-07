@@ -18,8 +18,7 @@ func _ready() -> void:
 	
 	body_entered.connect(func(body) -> void:
 		if body.name == "Player":
-			body.found_key.emit()
-			body.set_balance(init_balance) # set initial balance
+			body.set_balance(body.coins + init_balance) # set initial balance
 			destroy()
 	)
 

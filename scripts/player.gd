@@ -1,25 +1,60 @@
 extends CharacterBody2D
 
+@warning_ignore("unused_signal")
+signal in_interactable_area(interactable_obj: Node) # pass the object that has the area 2d
+
 var inventory := FILE_PATH.MODEL_INVENTORY.new()
 
 var coins: int = 0
-var key_count: int
 var is_using_touch: bool = false
+var door: Node = null
 
-var level: RefCounted = null
+var level: RefCounted = FILE_PATH.MODEL_LEVEL_STATE.new()
+var input_touch := FILE_PATH.INPUT_TOUCH.new() # NOTE: mobile device
 
 @onready var ui = $CanvasLayer/UI
 
-@warning_ignore("unused_signal")
-signal found_key
-
-var input_touch := FILE_PATH.INPUT_TOUCH.new() # NOTE: rm & unique mobile input
-
 func _ready() -> void:
+	#region actions
+	Utility.add_action_for_key("interact", KEY_E)
+	#endregion
+
 	set_balance(20) # initialize balance display
 	add_to_group("player")
 	add_child(input_touch)
 	input_touch.name = "input_touch"
+
+	#region setting ui data
+	ui.set_quota_ui(level.exit_cost)
+	#endregion
+
+	in_interactable_area.connect(func(node) -> void:
+		if node is FILE_PATH.DOOR:
+			door = node
+			print_debug("player is in door area")
+			door.get_node("Sprite2D").modulate = Color.BLUE # highlight door
+		else:
+			print_debug("player left door area")
+			door.get_node("Sprite2D").modulate = Color.YELLOW # reset door color
+			door = null
+	)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		print_debug("player wants to interact with door")
+		if door != null and can_pay_exit_cost():
+			pay_exit_cost()
+			door.destroy()
+		elif door != null and not can_pay_exit_cost():
+			if has_node("sfx_error"): # play sound effect
+				$sfx_error.play()
+			else:
+				var sfx = Utility.create_sfx_player(FILE_PATH.SFX_ERROR)
+				add_child(sfx)
+				sfx.volume_db = -10.0
+				sfx.name = "sfx_error"
+				sfx.stream = FILE_PATH.SFX_ERROR
+				sfx.play()
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
@@ -60,3 +95,21 @@ func sell_item(item: String, price: int) -> bool:
 func set_balance(amount: int) -> void:
 	coins = amount
 	ui.bal_label.text = str(coins)
+
+func can_pay_exit_cost() -> bool:
+	return coins >= level.exit_cost
+
+func pay_exit_cost() -> bool:
+	if can_pay_exit_cost():
+		set_balance(coins - level.exit_cost)
+		if has_node("sfx_pay"): # play sound effect
+			$sfx_pay.play()
+			return true
+		else:
+			var sfx = Utility.create_sfx_player(FILE_PATH.SFX_PAY)
+			add_child(sfx)
+			sfx.name = "sfx_pay"
+			sfx.stream = FILE_PATH.SFX_PAY
+			sfx.play()
+		return true
+	return false

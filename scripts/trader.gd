@@ -7,8 +7,6 @@ var player = null
 @onready var ui_shop := $UI/UIShop
 
 func _ready() -> void:
-	Utility.add_action_for_key("trade", KEY_E)
-
 	body_entered.connect(func(body) -> void:
 		if body is FILE_PATH.PLAYER:
 			# load ui to trade
@@ -71,7 +69,7 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("trade") and player != null:
+	if Input.is_action_just_pressed("interact") and player != null:
 		print_debug("player wants to trade")
 		load_shop_ui()
 
@@ -85,6 +83,7 @@ func load_shop_ui() -> void:
 	var sfx = Utility.create_sfx_player(FILE_PATH.SFX_WHOOSH)
 	add_child(sfx)
 	sfx.name = "sfx_whoosh"
+	sfx.volume_db = -10.0
 	sfx.play()
 
 	ui_shop.visible = true

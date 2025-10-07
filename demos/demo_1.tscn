@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://brg7kfusofwbr"]
+[gd_scene load_steps=19 format=4 uid="uid://brg7kfusofwbr"]
 
 [ext_resource type="PackedScene" uid="uid://c5o0f7uqng7j1" path="res://scenes/player.tscn" id="1_2ymfe"]
 [ext_resource type="Script" uid="uid://dag3xvapth8wh" path="res://scripts/ui_player.gd" id="2_fxjij"]
@@ -22,6 +22,9 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(48, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdsq3"]
+radius = 64.03124
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwbf3"]
 shader = ExtResource("5_ck7gy")
@@ -179,6 +182,11 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 shape = SubResource("RectangleShape2D_kek77")
 metadata/_edit_lock_ = true
+
+[node name="InteractArea2D" type="Area2D" parent="Exit"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/InteractArea2D"]
+shape = SubResource("CircleShape2D_fdsq3")
 
 [node name="StartBal" type="Area2D" parent="."]
 position = Vector2(304, 120)

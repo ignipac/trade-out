@@ -22,3 +22,7 @@ func get_inventory_item_ui(item: String) -> Node:
 		if child.get_child(0).text == item:
 			return child
 	return null
+
+
+func set_quota_ui(amount: int) -> void:
+	tar_label.text = str(amount)
