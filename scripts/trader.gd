@@ -1,6 +1,7 @@
 extends Area2D
 
-@export var canvas: CanvasLayer
+@export var sell_items: Dictionary[String, ItemProps]
+@export var buy_items: Dictionary[String, ItemProps]
 
 var player = null
 
