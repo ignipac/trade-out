@@ -1,0 +1,96 @@
+{
+	"blacksmith_trader": {
+		"name": "Gareth the Blacksmith",
+		"type": "blacksmith",
+		"sell_items": {
+			"iron_sword": {
+				"value": 50,
+				"amount": 3
+			},
+			"steel_armor": {
+				"value": 120,
+				"amount": 2
+			},
+			"iron_ingot": {
+				"value": 15,
+				"amount": 20
+			}
+		},
+		"buy_items": {
+			"scrap_metal": {
+				"value": 5,
+				"amount": -1
+			},
+			"coal": {
+				"value": 3,
+				"amount": -1
+			}
+		},
+		"sell_price_multiplier": 1.2,
+		"buy_price_multiplier": 0.8
+	},
+	"textile_trader": {
+		"name": "Miriam the Weaver",
+		"type": "textile",
+		"sell_items": {
+			"silk": {
+				"value": 25,
+				"amount": 8
+			},
+			"cotton_cloth": {
+				"value": 10,
+				"amount": 15
+			},
+			"fine_robe": {
+				"value": 80,
+				"amount": 2
+			}
+		},
+		"buy_items": {
+			"wool": {
+				"value": 8,
+				"amount": -1
+			},
+			"cotton": {
+				"value": 5,
+				"amount": -1
+			},
+			"dye": {
+				"value": 12,
+				"amount": -1
+			}
+		},
+		"sell_price_multiplier": 1.0,
+		"buy_price_multiplier": 0.9
+	},
+	"general_trader": {
+		"name": "Old Pete",
+		"type": "general",
+		"sell_items": {
+			"bread": {
+				"value": 2,
+				"amount": 50
+			},
+			"water": {
+				"value": 1,
+				"amount": 100
+			},
+			"rope": {
+				"value": 8,
+				"amount": 10
+			}
+		},
+		"buy_items": {
+			"leather": {
+				"value": 6,
+				"amount": -1
+			},
+			"herbs": {
+				"value": 4,
+				"amount": -1
+			}
+		},
+		"sell_price_multiplier": 1.1,
+		"buy_price_multiplier": 0.7
+	}
+}

@@ -15,7 +15,7 @@ const SFX_PAY = preload("res://sfx/pay.ogg")
 const SFX_ERROR = preload("res://sfx/error.ogg")
 
 # ---------- Input ----------
-const INPUT_TOUCH = preload("res://scripts/input_handler_touch.gd")
+const INPUT_TOUCH = preload("res://scripts/input_touch.gd")
 
 
 # ---------- UI ----------

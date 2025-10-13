@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://br42lc8xwr6ud"]
 
-[ext_resource type="Script" uid="uid://d0xxk3e82toc8" path="res://pcg/backtracking.gd" id="1_664a0"]
+[ext_resource type="Script" uid="uid://d0xxk3e82toc8" path="res://scripts/backtracking.gd" id="1_664a0"]
 [ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://textures/white_strip_16px_h.png" id="1_bacr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bacr0"]

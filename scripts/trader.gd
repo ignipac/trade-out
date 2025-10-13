@@ -1,13 +1,20 @@
 extends Area2D
 
-@export var sell_items: Dictionary[String, ItemProps]
-@export var buy_items: Dictionary[String, ItemProps]
+@export var trader_data: TraderData
+@export var trader_id: String = "" # ID to lookup trader in registry
 
 var player = null
 
-@onready var ui_shop := $UI/UIShop
+var item_1 = 100.0
+
+@export var ui: Control
 
 func _ready() -> void:
+	# Load trader data from registry if trader_id is set
+	if trader_id != "" and trader_data == null:
+		var registry = TraderRegistry.get_instance()
+		trader_data = registry.get_trader_data(trader_id)
+	
 	body_entered.connect(func(body) -> void:
 		if body is FILE_PATH.PLAYER:
 			# load ui to trade
@@ -20,65 +27,22 @@ func _ready() -> void:
 		unload_shop_ui()
 	)
 
-	#region Shop
-	ui_shop.buy_button.pressed.connect(func() -> void:
-		if player == null:
-			return
-		
-		print_debug("player wants to buy")
-
-		if has_node("sfx_click"):
-			$sfx_click.play()
-		else:
-			var sfx = Utility.create_sfx_player(FILE_PATH.SFX_CLICK)
-			add_child(sfx)
-			sfx.name = "sfx_click"
-			sfx.play()
-
-		# Implement buying logic here
-		if not player.buy_item("silk", 5):
-			ui_shop.error_label.text = "Not enough coins!"
-			print_debug("not enough coins")
-			ui_shop.error_label.visible = true
-		else:
-			ui_shop.error_label.visible = false
-	)
-	ui_shop.sell_button.pressed.connect(func() -> void:
-		if player == null:
-			return
-		
-		print_debug("player wants to sell")
-
-		if has_node("sfx_click"):
-			$sfx_click.play()
-		else:
-			var sfx = Utility.create_sfx_player(FILE_PATH.SFX_CLICK)
-			add_child(sfx)
-			sfx.name = "sfx_click"
-			sfx.play()
-
-		# Implement selling logic here
-		if not player.sell_item("silk", 3):
-			ui_shop.error_label.text = "No items to sell!"
-			print_debug("no items to sell")
-			ui_shop.error_label.visible = true
-		else:
-			ui_shop.error_label.visible = false
-	)
-
-	#endregion 
+	add_child(Utility.add_timer_with_callable(func(): ui.get_node("Label").text = str(Flux.stable(item_1)))) # why? 
+	# issues:
+	# timer has to stop when player is trading? or player can reserve certain prices?
+	# think about how to get item at the price
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and player != null:
 		print_debug("player wants to trade")
 		load_shop_ui()
-
+	
 func load_shop_ui() -> void:
-	if not ui_shop:
+	if not ui:
 		return
 	
-	if ui_shop.visible:
+	if ui.visible:
 		return
 
 	var sfx = Utility.create_sfx_player(FILE_PATH.SFX_WHOOSH)
@@ -87,10 +51,10 @@ func load_shop_ui() -> void:
 	sfx.volume_db = -10.0
 	sfx.play()
 
-	ui_shop.visible = true
+	ui.visible = true
 
 func unload_shop_ui() -> void:
-	if not ui_shop:
+	if not ui:
 		print_debug("No Shop UI found")
 		return
 
@@ -102,4 +66,4 @@ func unload_shop_ui() -> void:
 			sfx.finished.connect(func() -> void:
 				sfx.queue_free()
 			)
-		ui_shop.visible = false
+		ui.visible = false

@@ -1,17 +1,18 @@
 extends StaticBody2D
 
-@onready var interact_area := $InteractArea2D
+@export var interact_area: Area2D
 
 func _ready() -> void:
-	interact_area.body_entered.connect(func(body: Node) -> void:
-		if body is FILE_PATH.PLAYER:
-			body.in_interactable_area.emit(self)
-	)
+	if interact_area:
+		interact_area.body_entered.connect(func(body: Node) -> void:
+			if body is FILE_PATH.PLAYER:
+				body.in_interactable_area.emit(self)
+		)
 
-	interact_area.body_exited.connect(func(body: Node) -> void:
-		if body is FILE_PATH.PLAYER:
-			body.in_interactable_area.emit(null)
-	)
+		interact_area.body_exited.connect(func(body: Node) -> void:
+			if body is FILE_PATH.PLAYER:
+				body.in_interactable_area.emit(null)
+		)
 
 func destroy() -> void:
 	var audio = Utility.create_sfx_player(FILE_PATH.SFX_DOOR_OPEN)

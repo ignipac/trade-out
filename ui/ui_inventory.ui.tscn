@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bccnodegnnx08"]
 
-[ext_resource type="PackedScene" uid="uid://beos8jvwwdfb" path="res://ui/ui_inv_item.tscn" id="1_snfsq"]
+[ext_resource type="PackedScene" uid="uid://beos8jvwwdfb" path="res://ui/ui_inv_item.ui.tscn" id="1_snfsq"]
 
 [node name="UIInventory" type="Control"]
 layout_mode = 3

@@ -10,22 +10,20 @@ var is_using_touch: bool = false
 var door: Node = null
 
 var level: RefCounted = FILE_PATH.MODEL_LEVEL_STATE.new()
-var input_touch := FILE_PATH.INPUT_TOUCH.new() # NOTE: mobile device
 
-@onready var ui = $CanvasLayer/UI
+@export var ui: Control
 
 func _ready() -> void:
 	#region actions
 	Utility.add_action_for_key("interact", KEY_E)
 	#endregion
 
-	set_balance(20) # initialize balance display
 	add_to_group("player")
-	add_child(input_touch)
-	input_touch.name = "input_touch"
 
 	#region setting ui data
-	ui.set_quota_ui(level.exit_cost)
+	if ui:
+		set_balance(20) # initialize balance display
+		ui.set_quota_ui(level.exit_cost)
 	#endregion
 
 	in_interactable_area.connect(func(node) -> void:

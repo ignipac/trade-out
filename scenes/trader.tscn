@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dikqhris1jggc"]
+
+[ext_resource type="Script" uid="uid://cxobyb83ws3uo" path="res://scripts/trader.gd" id="1_xcntr"]
+[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://textures/white_1x1.png" id="2_2n3q7"]
+[ext_resource type="Texture2D" uid="uid://n5x7wcx44v8l" path="res://icons/icon_trade.png" id="3_gpgey"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rfuk"]
+radius = 48.0
+
+[node name="Trader" type="Area2D"]
+modulate = Color(0, 0.95000005, 1, 1)
+script = ExtResource("1_xcntr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(28, 28)
+texture = ExtResource("2_2n3q7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6rfuk")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("3_gpgey")
