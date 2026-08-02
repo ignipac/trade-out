@@ -8,16 +8,20 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="maze-and-trade"
+config/name="Trade Out"
 run/main_scene="uid://brg7kfusofwbr"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://c4w6sxwj38jw8"
 
 [audio]
 
-buses/default_bus_layout="res://audio/default_bus_layout.tres"
+buses/default_bus_layout="res://assets/audio_bus/default_bus_layout.tres"
 
 [input_devices]
 

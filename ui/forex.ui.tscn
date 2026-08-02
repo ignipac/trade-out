@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://oatuo4cyg51x"]
+
+[ext_resource type="Texture2D" uid="uid://chwo6uecmlhh8" path="res://assets/textures/currency_type_1.png" id="1_7bgne"]
+[ext_resource type="Script" uid="uid://b34ed2p3mg6g5" path="res://ui/scripts/forex.ui.gd" id="1_bk2n2"]
+[ext_resource type="Texture2D" uid="uid://cmljlqcg6568p" path="res://assets/textures/currency_type_2.png" id="2_7rm8o"]
+
+[node name="ForexUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 23.0
+offset_right = 3.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bk2n2")
+
+[node name="Currencies" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 83.0
+offset_right = 339.0
+offset_bottom = 406.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Currencies"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Currencies/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+texture = ExtResource("1_7bgne")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Currencies/HBoxContainer"]
+layout_mode = 2
+text = "Crystal Bills"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Currencies"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Currencies/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+texture = ExtResource("2_7rm8o")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Currencies/HBoxContainer2"]
+layout_mode = 2
+text = "Swish Bucks"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Item1" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 369.0
+offset_right = 609.0
+offset_bottom = 433.0
+texture = ExtResource("1_7bgne")
+
+[node name="Item2" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 371.0
+offset_right = 367.0
+offset_bottom = 435.0
+texture = ExtResource("2_7rm8o")
+
+[node name="SwapButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 395.0
+offset_right = 446.30243
+offset_bottom = 412.08295
+text = "Swap"

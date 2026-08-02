@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" format=3 uid="uid://fwunpoorcmkr"]
+
+[ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://assets/textures/white_strip_16px_h.png" id="1_ttgs6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej7qu"]
+texture = ExtResource("1_ttgs6")
+0:0/0 = 0
+0:0/0/modulate = Color(0, 0, 0, 1)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_ej7qu")

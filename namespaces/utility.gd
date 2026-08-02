@@ -12,8 +12,9 @@ static func add_action_for_key(tag: String, key: int) -> void:
 	event.physical_keycode = key
 	InputMap.action_add_event(tag, event)
 
-static func add_timer_with_callable(callable: Callable) -> Timer:
+static func add_timer_with_callable(callable: Callable, wait_time: float = 1.0) -> Timer:
 	var timer = Timer.new()
 	timer.autostart = true
+	timer.wait_time = wait_time
 	timer.timeout.connect(callable)
 	return timer

@@ -1,16 +1,18 @@
-[gd_scene load_steps=19 format=4 uid="uid://brg7kfusofwbr"]
+[gd_scene format=4 uid="uid://brg7kfusofwbr"]
 
 [ext_resource type="PackedScene" uid="uid://c5o0f7uqng7j1" path="res://scenes/player.tscn" id="1_2ymfe"]
 [ext_resource type="Script" uid="uid://dag3xvapth8wh" path="res://ui/scripts/player.ui.gd" id="2_fxjij"]
 [ext_resource type="PackedScene" uid="uid://bbw3npvynputn" path="res://scenes/level_layer.tscn" id="2_vsbsm"]
-[ext_resource type="PackedScene" path="res://ui/ui_inv_item.ui.tscn" id="2_xbpde"]
-[ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://scripts/exit.gd" id="3_fb5af"]
-[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://textures/white_1x1.png" id="4_ck7gy"]
-[ext_resource type="Shader" uid="uid://bbdvhmewrso8m" path="res://shaders/rounded_corners.gdshader" id="5_ck7gy"]
-[ext_resource type="Script" uid="uid://b36xphke401ej" path="res://scripts/start_bal.gd" id="5_dwbf3"]
-[ext_resource type="Script" uid="uid://cxobyb83ws3uo" path="res://scripts/trader.gd" id="7_6rfuk"]
-[ext_resource type="Script" uid="uid://dg82433dgjcp" path="res://scripts/shop.gd" id="9_xbpde"]
-[ext_resource type="Texture2D" uid="uid://n5x7wcx44v8l" path="res://icons/icon_trade.png" id="10_fdsq3"]
+[ext_resource type="PackedScene" uid="uid://beos8jvwwdfb" path="res://ui/inv_item.ui.tscn" id="2_xbpde"]
+[ext_resource type="Script" uid="uid://bexo4hexunr1m" path="res://assets/scripts/exit.gd" id="3_fb5af"]
+[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://assets/textures/white_1x1.png" id="4_ck7gy"]
+[ext_resource type="Shader" uid="uid://bbdvhmewrso8m" path="res://assets/shaders/rounded_corners.gdshader" id="5_ck7gy"]
+[ext_resource type="Script" uid="uid://b36xphke401ej" path="res://assets/scripts/start_bal.gd" id="5_dwbf3"]
+[ext_resource type="Script" uid="uid://cxobyb83ws3uo" path="res://assets/scripts/trader.gd" id="7_6rfuk"]
+[ext_resource type="Script" uid="uid://dg82433dgjcp" path="res://assets/scripts/shop.gd" id="9_xbpde"]
+[ext_resource type="Texture2D" uid="uid://n5x7wcx44v8l" path="res://assets/icons/icon_trade.png" id="10_fdsq3"]
+[ext_resource type="Script" uid="uid://gar2hlnk6xbt" path="res://data_models/item_props.rsc.gd" id="10_t7p5f"]
+[ext_resource type="Script" uid="uid://b8nhmbt3ntefj" path="res://data_models/trader_data.rsc.gd" id="11_cvyh5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbpde"]
 draw_center = false
@@ -33,6 +35,10 @@ shader_parameter/corner_scale = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwbf3"]
 radius = 8.062258
 
+[sub_resource type="Resource" id="Resource_fdsq3"]
+script = ExtResource("11_cvyh5")
+metadata/_custom_type_script = "uid://b8nhmbt3ntefj"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rfuk"]
 radius = 48.0
 
@@ -43,14 +49,15 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="Demo1" type="Node2D"]
+[node name="Demo1" type="Node2D" unique_id=180523904]
 
-[node name="Player" parent="." instance=ExtResource("1_2ymfe")]
+[node name="Player" parent="." unique_id=1066670867 node_paths=PackedStringArray("ui") instance=ExtResource("1_2ymfe")]
 position = Vector2(424, 88)
+ui = NodePath("CanvasLayer/UI")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=2049979161]
 
-[node name="UI" type="Control" parent="Player/CanvasLayer"]
+[node name="UI" type="Control" parent="Player/CanvasLayer" unique_id=1260102733]
 layout_mode = 3
 anchor_left = 0.5208333
 anchor_top = 0.38271606
@@ -63,7 +70,7 @@ offset_bottom = 48.0
 script = ExtResource("2_fxjij")
 metadata/_edit_use_anchors_ = true
 
-[node name="QContainer" type="HBoxContainer" parent="Player/CanvasLayer/UI"]
+[node name="QContainer" type="HBoxContainer" parent="Player/CanvasLayer/UI" unique_id=908263196]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -73,19 +80,19 @@ offset_right = 12.0
 offset_bottom = -210.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="Player/CanvasLayer/UI/QContainer"]
+[node name="Label" type="Label" parent="Player/CanvasLayer/UI/QContainer" unique_id=1081706598]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Target"
 
-[node name="TarLabel" type="Label" parent="Player/CanvasLayer/UI/QContainer"]
+[node name="TarLabel" type="Label" parent="Player/CanvasLayer/UI/QContainer" unique_id=379966832]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "10"
 horizontal_alignment = 2
 
-[node name="BContainer" type="HBoxContainer" parent="Player/CanvasLayer/UI"]
+[node name="BContainer" type="HBoxContainer" parent="Player/CanvasLayer/UI" unique_id=741250080]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -98,19 +105,19 @@ offset_bottom = -172.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Player/CanvasLayer/UI/BContainer"]
+[node name="Label" type="Label" parent="Player/CanvasLayer/UI/BContainer" unique_id=527089067]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Balance"
 
-[node name="BalLabel" type="Label" parent="Player/CanvasLayer/UI/BContainer"]
+[node name="BalLabel" type="Label" parent="Player/CanvasLayer/UI/BContainer" unique_id=825925270]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 horizontal_alignment = 2
 
-[node name="Panel" type="Panel" parent="Player/CanvasLayer/UI"]
+[node name="Panel" type="Panel" parent="Player/CanvasLayer/UI" unique_id=496623599]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,7 +130,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xbpde")
 
-[node name="Inv_Container" type="GridContainer" parent="Player/CanvasLayer/UI"]
+[node name="Inv_Container" type="GridContainer" parent="Player/CanvasLayer/UI" unique_id=1829331697]
 layout_mode = 0
 offset_left = -158.0
 offset_top = -38.0
@@ -131,98 +138,100 @@ offset_right = 75.0
 offset_bottom = 37.0
 columns = 3
 
-[node name="UIInvItem" parent="Player/CanvasLayer/UI/Inv_Container" instance=ExtResource("2_xbpde")]
+[node name="UIInvItem" parent="Player/CanvasLayer/UI/Inv_Container" unique_id=1878833686 instance=ExtResource("2_xbpde")]
 layout_mode = 2
 
-[node name="LevelLayer" parent="." instance=ExtResource("2_vsbsm")]
+[node name="LevelLayer" parent="." unique_id=558506048 instance=ExtResource("2_vsbsm")]
 tile_map_data = PackedByteArray("AAAYAAgABQABAAAAAAAYAAkABQABAAAAAAAYAAoABQABAAAAAAAYAAsABQABAAAAAAAdAA0ABQABAAAAAAAeAA0ABQABAAAAAAAfAA0ABQABAAAAAAAcAA0ABQABAAAAAAAcABAABQABAAAAAAAdABAABQABAAAAAAAeABAABQABAAAAAAAfABAABQABAAAAAAAYAAwABQABAAAAAAAXAAwABQABAAAAAAAWAAwABQABAAAAAAAVAAwABQABAAAAAAARAAkABQABAAAAAAARAAoABQABAAAAAAARAAsABQABAAAAAAARAAwABQABAAAAAAAQAAwABQABAAAAAAAPAAwABQABAAAAAAAIAAsABQABAAAAAAAIAAwABQABAAAAAAAIAA0ABQABAAAAAAAIAA4ABQABAAAAAAALABEABQABAAAAAAAMABEABQABAAAAAAANABEABQABAAAAAAAOABEABQABAAAAAAAdABcABQABAAAAAAAdABYABQABAAAAAAAdABUABQABAAAAAAAdABQABQABAAAAAAAgABAABQABAAAAAAAhABAABQABAAAAAAAiABAABQABAAAAAAAUAAUABQABAAAAAAATAAUABQABAAAAAAASAAUABQABAAAAAAARAAUABQABAAAAAAAQAAUABQABAAAAAAAPAAUABQABAAAAAAAPAAYABQABAAAAAAAPAAcABQABAAAAAAAjABAABQABAAAAAAAgAA0ABQABAAAAAAAhAA0ABQABAAAAAAAYAAcABQABAAAAAAAYAAYABQABAAAAAAAYAAUABQABAAAAAAAhAAkABQABAAAAAAAhAAgABQABAAAAAAAhAAcABQABAAAAAAAiAAcABQABAAAAAAAjAAcABQABAAAAAAAkAAcABQABAAAAAAAlAAcABQABAAAAAAAmAAcABQABAAAAAAAiAA0ABQABAAAAAAAjAA0ABQABAAAAAAAkAA0ABQABAAAAAAAlAA0ABQABAAAAAAAmAA0ABQABAAAAAAAnAA0ABQABAAAAAAAoAA0ABQABAAAAAAApAA0ABQABAAAAAAApAAwABQABAAAAAAApAAsABQABAAAAAAApAAoABQABAAAAAAApAAkABQABAAAAAAApAAgABQABAAAAAAApAAcABQABAAAAAAAoAAcABQABAAAAAAAnAAcABQABAAAAAAAcAAYABQABAAAAAAAcAAcABQABAAAAAAAcAAgABQABAAAAAAAcAAkABQABAAAAAAAdAAkABQABAAAAAAAeAAkABQABAAAAAAAfAAkABQABAAAAAAAgAAkABQABAAAAAAAcAA4ABQABAAAAAAAcAA8ABQABAAAAAAAeABQABQABAAAAAAAfABQABQABAAAAAAAgABQABQABAAAAAAAhABQABQABAAAAAAAiABQABQABAAAAAAAjABQABQABAAAAAAAVAAkABQABAAAAAAAVAAoABQABAAAAAAAVAAsABQABAAAAAAAVAAgABQABAAAAAAAVAAcABQABAAAAAAAVAAYABQABAAAAAAAVAAUABQABAAAAAAAPAAgABQABAAAAAAAQAAkABQABAAAAAAAPAAkABQABAAAAAAAPAAsABQABAAAAAAAOAAsABQABAAAAAAANAAsABQABAAAAAAAIAA8ABQABAAAAAAAIABAABQABAAAAAAAJABAABQABAAAAAAAKABAABQABAAAAAAAKABEABQABAAAAAAAOABIABQABAAAAAAAYABkABQABAAAAAAAZABkABQABAAAAAAAaABkABQABAAAAAAAbABkABQABAAAAAAAcABkABQABAAAAAAAdABkABQABAAAAAAAdABgABQABAAAAAAAJAAsABQABAAAAAAAKAAsABQABAAAAAAALAAsABQABAAAAAAAMAAsABQABAAAAAAAPABIABQABAAAAAAAQABIABQABAAAAAAASABIABQABAAAAAAARABIABQABAAAAAAATABIABQABAAAAAAAUABIABQABAAAAAAATABYABQABAAAAAAASABYABQABAAAAAAARABYABQABAAAAAAAQABYABQABAAAAAAAPABYABQABAAAAAAAOABYABQABAAAAAAAOABcABQABAAAAAAAOABgABQABAAAAAAAOABkABQABAAAAAAAOABoABQABAAAAAAAOABsABQABAAAAAAAPABsABQABAAAAAAAQABsABQABAAAAAAARABsABQABAAAAAAASABsABQABAAAAAAAWABsABQABAAAAAAAXABsABQABAAAAAAAYABsABQABAAAAAAAYABoABQABAAAAAAAUABMABQABAAAAAAAUABQABQABAAAAAAAUABUABQABAAAAAAAUABYABQABAAAAAAAVABsABQABAAAAAAAUABsABQABAAAAAAATABsABQABAAAAAAAYAAQABQABAAAAAAAYAAMABQABAAAAAAAYAAIABQABAAAAAAAZAAIABQABAAAAAAAaAAIABQABAAAAAAAbAAIABQABAAAAAAAcAAIABQABAAAAAAAcAAMABQABAAAAAAAcAAQABQABAAAAAAAcAAUABQABAAAAAAA=")
 navigation_enabled = false
 
-[node name="Scaffold" type="Node" parent="."]
+[node name="Scaffold" type="Node" parent="." unique_id=900720639]
 
-[node name="Label" type="Label" parent="Scaffold"]
+[node name="Label" type="Label" parent="Scaffold" unique_id=2041962075]
 offset_left = 560.0
 offset_top = 144.0
 offset_right = 653.0
 offset_bottom = 176.0
 text = "Trader Here"
 
-[node name="Label2" type="Label" parent="Scaffold"]
+[node name="Label2" type="Label" parent="Scaffold" unique_id=1139606610]
 offset_left = 160.0
 offset_top = 224.0
 offset_right = 253.0
 offset_bottom = 256.0
 text = "Trader Here"
 
-[node name="Label4" type="Label" parent="Scaffold"]
+[node name="Label4" type="Label" parent="Scaffold" unique_id=376238411]
 offset_left = 272.0
 offset_top = 384.0
 offset_right = 365.0
 offset_bottom = 416.0
 text = "Misc?"
 
-[node name="Label3" type="Label" parent="Scaffold"]
+[node name="Label3" type="Label" parent="Scaffold" unique_id=1024910910]
 offset_left = 480.0
 offset_top = 288.0
 offset_right = 573.0
 offset_bottom = 320.0
 text = "Exit"
 
-[node name="Exit" type="StaticBody2D" parent="."]
+[node name="Exit" type="StaticBody2D" parent="." unique_id=622581931]
 position = Vector2(570, 296)
 rotation = 1.5707964
 collision_layer = 8
 script = ExtResource("3_fb5af")
 
-[node name="Sprite2D" type="Sprite2D" parent="Exit"]
+[node name="Sprite2D" type="Sprite2D" parent="Exit" unique_id=2012924379]
 modulate = Color(1, 1, 0, 1)
 scale = Vector2(47.704105, 12.134061)
 texture = ExtResource("4_ck7gy")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" unique_id=598555990]
 shape = SubResource("RectangleShape2D_kek77")
 metadata/_edit_lock_ = true
 
-[node name="InteractArea2D" type="Area2D" parent="Exit"]
+[node name="InteractArea2D" type="Area2D" parent="Exit" unique_id=1366237628]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/InteractArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/InteractArea2D" unique_id=1304984726]
 shape = SubResource("CircleShape2D_fdsq3")
 
-[node name="StartBal" type="Area2D" parent="."]
+[node name="StartBal" type="Area2D" parent="." unique_id=33191461]
 position = Vector2(304, 120)
 script = ExtResource("5_dwbf3")
 animation_speed = 5.0
 animation_amplitude = 4.0
 
-[node name="Sprite2D" type="Sprite2D" parent="StartBal"]
+[node name="Sprite2D" type="Sprite2D" parent="StartBal" unique_id=963063961]
 modulate = Color(1, 1, 0.33999997, 1)
 material = SubResource("ShaderMaterial_dwbf3")
 scale = Vector2(16, 16)
 texture = ExtResource("4_ck7gy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StartBal"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartBal" unique_id=305978703]
 scale = Vector2(0.99751973, 0.95744973)
 shape = SubResource("CircleShape2D_dwbf3")
 
-[node name="Trader" type="Area2D" parent="."]
+[node name="Trader" type="Area2D" parent="." unique_id=731409459 node_paths=PackedStringArray("ui")]
 modulate = Color(0, 0.95000005, 1, 1)
 position = Vector2(624, 184)
 script = ExtResource("7_6rfuk")
+trader_data = SubResource("Resource_fdsq3")
+ui = NodePath("UI/UIShop")
 
-[node name="Sprite2D" type="Sprite2D" parent="Trader"]
+[node name="Sprite2D" type="Sprite2D" parent="Trader" unique_id=816894560]
 scale = Vector2(28, 28)
 texture = ExtResource("4_ck7gy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trader"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trader" unique_id=434423668]
 shape = SubResource("CircleShape2D_6rfuk")
 
-[node name="Icon" type="Sprite2D" parent="Trader"]
+[node name="Icon" type="Sprite2D" parent="Trader" unique_id=1444742253]
 texture = ExtResource("10_fdsq3")
 
-[node name="UI" type="CanvasLayer" parent="Trader"]
+[node name="UI" type="CanvasLayer" parent="Trader" unique_id=642644582]
 
-[node name="UIShop" type="Control" parent="Trader/UI"]
+[node name="UIShop" type="Control" parent="Trader/UI" unique_id=599304470]
 visible = false
 layout_mode = 3
 anchor_left = 0.7013889
@@ -233,7 +242,7 @@ grow_vertical = 2
 script = ExtResource("9_xbpde")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="Trader/UI/UIShop"]
+[node name="Panel" type="Panel" parent="Trader/UI/UIShop" unique_id=1353270249]
 self_modulate = Color(1, 1, 1, 0.7019608)
 layout_mode = 1
 anchors_preset = 15
@@ -243,7 +252,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u3rlo")
 
-[node name="Label" type="Label" parent="Trader/UI/UIShop"]
+[node name="Label" type="Label" parent="Trader/UI/UIShop" unique_id=1982258337]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.05
@@ -254,7 +263,7 @@ text = "Trader #1"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Items" type="VBoxContainer" parent="Trader/UI/UIShop"]
+[node name="Items" type="VBoxContainer" parent="Trader/UI/UIShop" unique_id=1041210942]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.125
@@ -265,28 +274,28 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Item1" type="HBoxContainer" parent="Trader/UI/UIShop/Items"]
+[node name="Item1" type="HBoxContainer" parent="Trader/UI/UIShop/Items" unique_id=1126991366]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="ItemName" type="Label" parent="Trader/UI/UIShop/Items/Item1"]
+[node name="ItemName" type="Label" parent="Trader/UI/UIShop/Items/Item1" unique_id=620990093]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Silk"
 
-[node name="BuyButton" type="Button" parent="Trader/UI/UIShop/Items/Item1"]
+[node name="BuyButton" type="Button" parent="Trader/UI/UIShop/Items/Item1" unique_id=1470559766]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Buy"
 
-[node name="SellButton" type="Button" parent="Trader/UI/UIShop/Items/Item1"]
+[node name="SellButton" type="Button" parent="Trader/UI/UIShop/Items/Item1" unique_id=1350276576]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sell"
 
-[node name="ErrorLabel" type="Label" parent="Trader/UI/UIShop"]
+[node name="ErrorLabel" type="Label" parent="Trader/UI/UIShop" unique_id=334225542]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

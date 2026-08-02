@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dikqhris1jggc"]
 
-[ext_resource type="Script" uid="uid://cxobyb83ws3uo" path="res://scripts/trader.gd" id="1_xcntr"]
-[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://textures/white_1x1.png" id="2_2n3q7"]
-[ext_resource type="Texture2D" uid="uid://n5x7wcx44v8l" path="res://icons/icon_trade.png" id="3_gpgey"]
+[ext_resource type="Script" uid="uid://cxobyb83ws3uo" path="res://assets/scripts/trader.gd" id="1_xcntr"]
+[ext_resource type="Texture2D" uid="uid://dok5wba7gako" path="res://assets/textures/white_1x1.png" id="2_2n3q7"]
+[ext_resource type="Texture2D" uid="uid://n5x7wcx44v8l" path="res://assets/icons/icon_trade.png" id="3_gpgey"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rfuk"]
 radius = 48.0

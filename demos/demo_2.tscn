@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://co3132woyhewe"]
 
-[ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://textures/white_strip_16px_h.png" id="1_3jyo2"]
-[ext_resource type="Script" uid="uid://bhu6moc1u4svu" path="res://scripts/game_controller.gd" id="1_ae5hf"]
+[ext_resource type="Texture2D" uid="uid://botl34i3npkc6" path="res://assets/textures/white_strip_16px_h.png" id="1_3jyo2"]
+[ext_resource type="Script" uid="uid://bhu6moc1u4svu" path="res://assets/scripts/game_controller.gd" id="1_ae5hf"]
 [ext_resource type="PackedScene" uid="uid://c5o0f7uqng7j1" path="res://scenes/player.tscn" id="2_w6c0f"]
 [ext_resource type="PackedScene" uid="uid://y1appesvirn3" path="res://scenes/exit.tscn" id="3_88670"]
 [ext_resource type="PackedScene" uid="uid://dikqhris1jggc" path="res://scenes/trader.tscn" id="4_4pfoy"]
@@ -47,6 +47,14 @@ tile_set = SubResource("TileSet_ny4sl")
 [node name="Player" parent="." instance=ExtResource("2_w6c0f")]
 position = Vector2(48, 48)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="UI" type="Control" parent="Player/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Exit" parent="." instance=ExtResource("3_88670")]
 position = Vector2(184, 96)
 rotation = 1.5707964
@@ -58,22 +66,49 @@ scale = Vector2(1.9805473, 1)
 
 [node name="Trader" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("4_4pfoy")]
 position = Vector2(144, 48)
-ui = NodePath("CanvasLayer/UI")
+ui = NodePath("CanvasLayer/NPCSellerUI")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Trader"]
 
-[node name="UI" type="Control" parent="Trader/CanvasLayer"]
+[node name="NPCSellerUI" type="Control" parent="Trader/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 403.0
-offset_top = 19.0
-offset_right = 558.0
-offset_bottom = 189.0
+offset_left = 129.0
+offset_top = 111.0
+offset_right = 313.0
+offset_bottom = 361.0
 
-[node name="Label" type="Label" parent="Trader/CanvasLayer/UI"]
-layout_mode = 0
-offset_right = 40.0
+[node name="Panel" type="Panel" parent="Trader/CanvasLayer/NPCSellerUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Trader/CanvasLayer/NPCSellerUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="NameLabel" type="Label" parent="Trader/CanvasLayer/NPCSellerUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Item 1"
+
+[node name="PriceLabel" type="Label" parent="Trader/CanvasLayer/NPCSellerUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100"
+
+[node name="Button" type="Button" parent="Trader/CanvasLayer/NPCSellerUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [editable path="Exit2"]
 [editable path="Trader"]
